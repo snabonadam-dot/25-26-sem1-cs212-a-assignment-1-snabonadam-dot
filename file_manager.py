@@ -12,6 +12,8 @@ import sys
 
 def display_welcome():
     """Display welcome message to the user."""
+    print()
+
     print("=" * 50)
     print("   Welcome to Python CLI File Manager!")
     print("=" * 50)
@@ -30,7 +32,7 @@ def calculate_file_size():
         return
     
     try:
-        # Check if file exists
+        # Check if  file exists
         if not os.path.exists(filename):
             print(f"Error: File '{filename}' not found.")
             return
@@ -45,8 +47,8 @@ def calculate_file_size():
         
         # Calculate size in different units
         # TODO: Fix the code below to perform floating point division
-        size_kb = size_bytes // 1024
-        size_mb = size_kb // 1024
+        size_kb = size_bytes / 1024
+        size_mb = size_kb / 1024
         
         # Display results
         print(f"\nFile: {filename}")
@@ -72,8 +74,9 @@ def get_user_choice():
     print("3. info - Show program information")
     print("4. quit - Exit the program")
     print()
-    
     choice = input("Enter your choice (help/calc/info/quit): ").strip().lower()
+    return choice 
+
     # TODO: Add code to return the choice
 
 
@@ -119,8 +122,9 @@ def display_info():
 # 2. goodbye_message defaults to "Thank you for using Python CLI File Manager!"
 # 3. invalid_choice_prefix defaults to "Invalid choice:"
 # 4. valid_commands defaults to "help, calc, info, quit"
-def process_user_command(choice, running, show_goodbye, goodbye_message, 
-                        invalid_choice_prefix, valid_commands):
+def process_user_command(choice, running, show_goodbye = True, goodbye_message = " Thank you for using Python CLI File Manager!" 
+                        ,invalid_choice_prefix="Invalid choice:" , valid_commands = "help, calc, info, quit"):
+    
     """
     Process a user command and return the updated running state.
     
@@ -152,17 +156,21 @@ def process_user_command(choice, running, show_goodbye, goodbye_message,
     else:
         print(f"\n{invalid_choice_prefix} '{choice}'")
         print(f"Please enter one of: {valid_commands}")
+
     
     return running
+    
 
 
 def main():
     """Main program loop."""
     # Display welcome message
     # TODO: Call the function to display the welcome message
+    display_welcome()
     
     # Main command loop
     # TODO: Initialize a variable to control the loop. Hint set running = True
+    running = True 
     while running:
         try:
             choice = get_user_choice()
